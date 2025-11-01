@@ -1,13 +1,13 @@
-# from django.urls import path
-# from . import views  # Importa as views do app
+from django.urls import path
+from . import views  # Importa as views do app
 
-# # Esta é a lista de URLs que seu app controla
-# urlpatterns = [
-#     path('', views.index, name='index'),  # A raiz do app
-#     path('home/', views.home, name='home'),
-#     path('professores/', views.lista_professores, name='lista_professores'),
-#     path('adicionar_aluno/', views.adicionar_aluno, name='adicionar_aluno'),
-#     path('adicionar_disciplina/', views.adicionar_disciplina, name='adicionar_disciplina'),
-#     path('adicionar_professor/', views.adicionar_professor, name='adicionar_professor'),
-#     # ... e todas as suas outras rotas ...
-# ]
+urlpatterns = [
+    # Página inicial
+    path('', views.index, name='index'),
+    # URLs de Produtos
+    path('produtos/', views.lista_produtos, name='lista_produtos'),
+    path('produtos/editar/<int:id_produto>/', views.editar_produto, name='editar_produto'),
+    # URLs de Movimentações
+    path('movimentacoes/', views.lista_movimentacoes, name='lista_movimentacoes'),
+    path('movimentacoes/adicionar/', views.adicionar_movimentacao, name='adicionar_movimentacao'),
+]

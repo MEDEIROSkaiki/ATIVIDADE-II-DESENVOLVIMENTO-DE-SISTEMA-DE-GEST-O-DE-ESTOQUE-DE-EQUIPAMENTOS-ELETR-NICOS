@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Movimentações de Estoque{% endblock %}
+
+{% block content %}
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>Histórico de Movimentações</h2>
+        <a href="{% url 'adicionar_movimentacao' %}" class="btn">Adicionar Movimentação</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Tipo</th>
+                <th>Quantidade</th>
+                <th>Data</th>
+                <th>Usuário</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mov in movimentacoes %}
+            <tr>
+                <td>{{ mov.id_produto_fk.nome_produto }}</td>
+                <td>{{ mov.get_entrada_saida_display }}</td>
+                <td>{{ mov.qtd_movimentacao }}</td>
+                <td>{{ mov.data_movimentacao|date:"d/m/Y H:i" }}</td>
+                <td>{{ mov.id_usuario_fk.nome_usuario }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Nenhuma movimentação registrada.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

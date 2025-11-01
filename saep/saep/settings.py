@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Meus Apps
+    'estoque.apps.EstoqueConfig',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +57,9 @@ ROOT_URLCONF = 'saep.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # Adicionamos o diretório do app 'estoque' para que o Django encontre os templates.
+        # Isso resolve o erro TemplateDoesNotExist sem precisar mover os arquivos.
+        'DIRS': [BASE_DIR / 'estoque'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

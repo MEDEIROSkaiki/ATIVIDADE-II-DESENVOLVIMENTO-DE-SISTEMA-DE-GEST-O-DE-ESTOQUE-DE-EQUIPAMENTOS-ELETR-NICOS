@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Adicionar Movimentação{% endblock %}
+
+{% block content %}
+    <h2>Registrar Nova Movimentação</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div style="margin-bottom: 1rem;">
+            <label for="produto">Produto:</label><br>
+            <select name="produto" id="produto" required style="width: 100%; padding: 8px;">
+                <option value="" disabled selected>Selecione um produto</option>
+                {% for produto in produtos %}
+                    <option value="{{ produto.id_produto }}">{{ produto.nome_produto }} (Atual: {{ produto.qtd_atual }})</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+            <label for="tipo_movimentacao">Tipo de Movimentação:</label><br>
+            <select name="tipo_movimentacao" id="tipo_movimentacao" required style="width: 100%; padding: 8px;">
+                <option value="ENTRADA">Entrada</option>
+                <option value="SAIDA">Saída</option>
+            </select>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+            <label for="quantidade">Quantidade:</label><br>
+            <input type="number" name="quantidade" id="quantidade" min="1" required style="width: calc(100% - 16px); padding: 8px;">
+        </div>
+
+        <button type="submit" class="btn">Registrar Movimentação</button>
+    </form>
+{% endblock %}
